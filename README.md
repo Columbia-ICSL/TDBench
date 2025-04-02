@@ -10,7 +10,7 @@
 #### **Intelligent and Connected Systems Lab (ICSL), Columbia University**
 
 [![paper](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://www.example.com/)
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-Dataset-orange)](https://www.example.com/)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-Dataset-orange)](https://huggingface.co/datasets/Columbia-ICSL/TDBench)
 
 
 <p align="center">
@@ -23,8 +23,8 @@
 
 ## 📢 Latest Updates
 - **Apr-03-25**: Arxiv Preprint is released [arxiv link]. 🔥🔥
-- **Apr-01-25**: TDBench now is compatible with [VLMEvalKit](https://github.com/open-compass/VLMEvalKit).
-- **Apr-01-25**: We release the benchmark [dataset](https://www.example.com/).
+- **Apr-02-25**: TDBench now is compatible with [VLMEvalKit](https://github.com/open-compass/VLMEvalKit).
+- **Apr-01-25**: We release the benchmark [dataset](https://huggingface.co/datasets/Columbia-ICSL/TDBench).
 ---
 
 ## 💡 Overview
