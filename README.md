@@ -9,7 +9,7 @@
 
 #### **Intelligent and Connected Systems Lab (ICSL), Columbia University**
 
-[![paper](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://www.example.com/)
+[![paper](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/pdf/2504.03748)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-Dataset-orange)](https://huggingface.co/datasets/Columbia-ICSL/TDBench)
 
 
@@ -22,8 +22,7 @@
 
 
 ## 📢 Latest Updates
-- **Apr-03-25**: Arxiv Preprint is released [arxiv link]. 🔥🔥
-- **Apr-02-25**: TDBench now is compatible with [VLMEvalKit](https://github.com/open-compass/VLMEvalKit).
+- **Apr-10-25**: Arxiv Preprint is released [arxiv link](https://arxiv.org/abs/2504.03748). 🔥🔥
 - **Apr-01-25**: We release the benchmark [dataset](https://huggingface.co/datasets/Columbia-ICSL/TDBench).
 ---
 
@@ -73,7 +72,12 @@ Top-down images are usually captured from a relatively high altitude, which may 
 ## 📜 Citation
 If you find our work and this repository useful, please consider giving our repo a star and citing our paper as follows:
 ```bibtex
-TBD
+@article{hou2025tdbench,
+  title={TDBench: Benchmarking Vision-Language Models in Understanding Top-Down Images},
+  author={Hou, Kaiyuan and Zhao, Minghui and Xu, Lilin and Fan, Yuang and Jiang, Xiaofan},
+  journal={arXiv preprint arXiv:2504.03748},
+  year={2025}
+}
 ```
 
 
