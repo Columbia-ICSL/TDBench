@@ -22,6 +22,7 @@
 
 
 ## 📢 Latest Updates
+- **Apr-23-25**: Submitted pull request to VLMEvalKit repository.
 - **Apr-10-25**: Arxiv Preprint is released [arxiv link](https://arxiv.org/abs/2504.03748). 🔥🔥
 - **Apr-01-25**: We release the benchmark [dataset](https://huggingface.co/datasets/Columbia-ICSL/TDBench).
 ---
@@ -65,8 +66,68 @@ Top-down images are usually captured from a relatively high altitude, which may 
 4. **Z-Axis Perception and Depth Understanding**
    - Assessing the depth reasoning from top-down images
 
+## 🤖 How to run TDBench
 
+TDBench is fully compatible with [VLMEvalKit](https://github.com/open-compass/VLMEvalKit). 
 
+### Installation
+1. First, install the VLMEvalKit environment by following the instructions in the [official repository](https://github.com/open-compass/VLMEvalKit)
+2. Set up your model configuration and APIs according to VLMEvalKit requirements
+
+### Datasets
+* **Standard Evaluation** - Tests 9 dimensions with 4 rotation angles
+  * `tdbench_rot0` (0° rotation)
+  * `tdbench_rot90` (90° rotation)
+  * `tdbench_rot180` (180° rotation)
+  * `tdbench_rot270` (270° rotation)
+
+* **Visual Grounding** - Tests visual grounding with 4 rotation angles
+  * `tdbench_grounding_rot0` (0° rotation)
+  * `tdbench_grounding_rot90` (90° rotation)
+  * `tdbench_grounding_rot180` (180° rotation)
+  * `tdbench_grounding_rot270` (270° rotation)
+
+* **Case Studies** - 4 studies
+  * `tdbench_cs_zoom`
+  * `tdbench_cs_height` 
+  * `tdbench_cs_integrity` 
+  * `tdbench_cs_depth` 
+
+### Usage Examples
+
+#### Standard Evaluation (All Rotations)
+
+```python
+python run.py --data tdbench_rot0 tdbench_rot90 tdbench_rot180 tdbench_rot270 \
+              --model <model_name> \
+              --verbose \
+              --work-dir <results_directory>
+```
+
+#### Visual Grounding Evaluation
+
+```python
+python run.py --data tdbench_grounding_rot0 tdbench_grounding_rot90 tdbench_grounding_rot180 tdbench_grounding_rot270 \
+              --model <model_name> \
+              --verbose \
+              --judge centroid \
+              --work-dir <results_directory>
+```
+
+#### Case Studies
+
+Run all case studies with:
+
+```python
+python run.py --data tdbench_cs_zoom tdbench_cs_height tdbench_cs_integrity tdbench_cs_depth \
+              --model <model_name> \
+              --verbose \
+              --work-dir <results_directory>
+```
+
+### Output
+
+Running multiple rotations will trigger RotationalEval results in the `hit_all` column of the verbose output. Results will be saved as `xxx_REresult.csv` in your specified `<results_directory>`.
 <hr />
 
 ## 📜 Citation
@@ -89,4 +150,3 @@ mz2866@columbia.edu.
 
 ---
 [<img src="images/ICSL_Logo.png" height="80">](http://icsl.ee.columbia.edu/)
-
