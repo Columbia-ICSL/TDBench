@@ -22,7 +22,7 @@
 
 
 ## 📢 Latest Updates
-- **Apr-23-25**: Submitted pull request to VLMEvalKit repository.
+- **Apr-23-25**: Submitted [pull request](https://github.com/open-compass/VLMEvalKit/pull/947) to VLMEvalKit repository.
 - **Apr-10-25**: Arxiv Preprint is released [arxiv link](https://arxiv.org/abs/2504.03748). 🔥🔥
 - **Apr-01-25**: We release the benchmark [dataset](https://huggingface.co/datasets/Columbia-ICSL/TDBench).
 ---
@@ -74,7 +74,7 @@ TDBench is fully compatible with [VLMEvalKit](https://github.com/open-compass/VL
 1. First, install the VLMEvalKit environment by following the instructions in the [official repository](https://github.com/open-compass/VLMEvalKit)
 2. Set up your model configuration and APIs according to VLMEvalKit requirements
 
-### Datasets
+### Datasets (for VLMEvalKit run.py)
 * **Standard Evaluation** - Tests 9 dimensions with 4 rotation angles
   * `tdbench_rot0` (0° rotation)
   * `tdbench_rot90` (90° rotation)
@@ -95,17 +95,33 @@ TDBench is fully compatible with [VLMEvalKit](https://github.com/open-compass/VL
 
 ### Usage Examples
 
-#### Standard Evaluation (All Rotations)
-
+#### Standard Evaluation
+To only evaluate a single rotation
 ```python
-python run.py --data tdbench_rot0 tdbench_rot90 tdbench_rot180 tdbench_rot270 \
+python run.py --data tdbench_rot0 \
+              --model <model_name> \
+              --verbose \
+              --work-dir <results_directory>
+```
+To apply RotationalEval, simply run all rotations
+```python
+python run.py --data tdbench_rot0 tdbench_rot90 tdbench_rot270 tdbench_rot270 \
               --model <model_name> \
               --verbose \
               --work-dir <results_directory>
 ```
 
-#### Visual Grounding Evaluation
 
+#### Visual Grounding Evaluation
+To only evaluate a single rotation
+```python
+python run.py --data tdbench_grounding_rot0 \
+              --model <model_name> \
+              --verbose \
+              --judge centroid \
+              --work-dir <results_directory>
+```
+To apply RotationalEval, simply run all rotations
 ```python
 python run.py --data tdbench_grounding_rot0 tdbench_grounding_rot90 tdbench_grounding_rot180 tdbench_grounding_rot270 \
               --model <model_name> \
@@ -126,8 +142,8 @@ python run.py --data tdbench_cs_zoom tdbench_cs_height tdbench_cs_integrity tdbe
 ```
 
 ### Output
-
-Running multiple rotations will trigger RotationalEval results in the `hit_all` column of the verbose output. Results will be saved as `xxx_REresult.csv` in your specified `<results_directory>`.
+VLMEvalKit prints and saves each dataset's output in `<results_directory>/<model_name>`. Check `xxx_acc.csv` for accuracy score, and `xxx_result.xlsx` for detailed VLM outputs.
+RotationalEval is triggered automatically after running all rotations. Results will be printed and saved as `xxx_REresult.csv`.
 <hr />
 
 ## 📜 Citation
