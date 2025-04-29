@@ -22,7 +22,7 @@
 
 
 ## 📢 Latest Updates
-- **Apr-23-25**: Submitted [pull request](https://github.com/open-compass/VLMEvalKit/pull/947) to VLMEvalKit repository.
+- **Apr-29-25**: TDBench has been merged into [VLMEvalKit](https://github.com/open-compass/VLMEvalKit/pull/947).
 - **Apr-10-25**: Arxiv Preprint is released [arxiv link](https://arxiv.org/abs/2504.03748). 🔥🔥
 - **Apr-01-25**: We release the benchmark [dataset](https://huggingface.co/datasets/Columbia-ICSL/TDBench).
 ---
