@@ -105,7 +105,7 @@ python run.py --data tdbench_rot0 \
 ```
 To apply RotationalEval, simply run all rotations
 ```python
-python run.py --data tdbench_rot0 tdbench_rot90 tdbench_rot270 tdbench_rot270 \
+python run.py --data tdbench_rot0 tdbench_rot90 tdbench_rot180 tdbench_rot270 \
               --model <model_name> \
               --verbose \
               --work-dir <results_directory>
