@@ -36,7 +36,7 @@ Images from ERA and the Semantic Drone Dataset are not hosted with TDBench. Down
 
 | Dataset | Download |
 |---|---|
-| ERA | [project page](https://lcmou.github.io/ERA_Dataset/) &rarr; `ERA_Dataset.zip` |
+| ERA | [project page](https://lcmou.github.io/ERA_Dataset/) &rarr; [`ERA_Dataset.zip`](https://drive.google.com/file/d/1yxXjDNAq5RAufSgSOE4QmdsNfAc4dOfM/view?usp=sharing) |
 | Semantic Drone Dataset | [project page](https://ivc.tugraz.at/research-project/semantic-drone-dataset/) &rarr; [download](https://cloud.tugraz.at/index.php/s/csxYfaKmie6LyqA) |
 
 Then assemble the benchmark in `$LMUData` (default `~/LMUData`); the rest of the data is downloaded from Hugging Face:
