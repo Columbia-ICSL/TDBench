@@ -14,7 +14,6 @@ from functools import partial
 import numpy as np
 import pandas as pd
 from PIL import Image
-from tabulate import tabulate
 from tqdm import tqdm
 
 from vlmeval.smp import (LMUDataRoot, d2df, decode_base64_to_image_file, download_file, dump,
@@ -3223,94 +3222,6 @@ class BMMR(ImageBaseDataset):
         if isinstance(line, int):
             line = self.data.iloc[line]
         question = line['question']
-        tgt_path = self.dump_image(line)
-
-        msgs = []
-        msgs.extend([dict(type='image', value=p) for p in tgt_path])
-        msgs.append(dict(type='text', value=question))
-        return msgs
-
-
-class TDBenchGrounding(ImageVQADataset):
-    DEFAULT_JUDGE_MODEL = 'centroid'
-
-    DATASET_URL = {
-        'tdbench_grounding_rot0':
-        'https://huggingface.co/datasets/Columbia-ICSL/TDBench/resolve/main/tdbench_grounding_rot0.tsv',  # noqa: E501
-        'tdbench_grounding_rot90':
-        'https://huggingface.co/datasets/Columbia-ICSL/TDBench/resolve/main/tdbench_grounding_rot90.tsv',  # noqa: E501
-        'tdbench_grounding_rot180':
-        'https://huggingface.co/datasets/Columbia-ICSL/TDBench/resolve/main/tdbench_grounding_rot180.tsv',  # noqa: E501
-        'tdbench_grounding_rot270':
-        'https://huggingface.co/datasets/Columbia-ICSL/TDBench/resolve/main/tdbench_grounding_rot270.tsv',  # noqa: E501
-    }
-
-    DATASET_MD5 = {
-        'tdbench_grounding_rot0': '4c2e16c797dfc27f23c06dbb82993a1e',
-        'tdbench_grounding_rot90': '1c75f08b0db07a655333217bf32052c3',
-        'tdbench_grounding_rot180': '794d15f88392a3b8ae5399e58b0f7327',
-        'tdbench_grounding_rot270': '76005a412b49f54eedb6ef963cd0affb',
-    }
-
-    def evaluate(self, eval_file, **judge_kwargs):
-        from .utils.tdbench import evaluate_bbox, extract_bbox_from_string, rotational_eval
-        method = judge_kwargs.get('model', self.DEFAULT_JUDGE_MODEL)
-        assert method in ['centroid',
-                          'iou'], '--judge should be either centroid or iou'
-
-        data = load(eval_file).sort_values(by='index')
-        predictions = [str(x) for x in data['prediction']]
-        answers = [str(x) for x in data['answer']]
-        indexes = [str(x) for x in data['index']]
-
-        scores = []
-
-        for idx, (pred, ans,
-                  index) in enumerate(zip(predictions, answers, indexes)):
-            try:
-                pred_bbox = extract_bbox_from_string(pred)
-                gt_bbox = extract_bbox_from_string(ans)
-
-                score = evaluate_bbox(pred_bbox, gt_bbox, method)
-                scores.append(score)
-            except Exception as e:
-                print(
-                    f"Error calculating {method} for index {index}. Marking as incorrect: {e}"
-                )
-                scores.append(0.0)
-
-        avg_score = sum(scores) / len(scores) if scores else 0
-
-        data['hit'] = scores
-        data['category'] = 'visual_grounding'
-        result_file = get_intermediate_file_path(eval_file, f'_{method}_result')
-        dump(data, result_file)
-
-        metric_name = 'Average Centroid Containment' if method == 'centroid' else 'Average IoU'
-        summary_scores = {metric_name: avg_score, 'Total Samples': len(scores)}
-
-        score_df = pd.DataFrame(list(summary_scores.items()),
-                                columns=['Metric', 'Score'])
-        score_file = get_intermediate_file_path(eval_file, '_acc')
-        dump(score_df, score_file)
-        re_result = rotational_eval(result_file)
-        if method == 'centroid' and re_result is not None and re_result is not False:
-            file_addr = osp.abspath(
-                result_file.split('_rot')[0] + '_REresult.csv')
-            link_addr = osp.join(osp.dirname(osp.dirname(result_file)),
-                                 osp.basename(file_addr))
-            re_result.to_csv(file_addr, index=True)
-            print(tabulate(re_result, headers="keys"))
-            if osp.exists(link_addr) or osp.islink(link_addr):
-                os.remove(link_addr)
-            os.symlink(file_addr, link_addr)
-        return summary_scores
-
-    def build_prompt(self, line):
-        if isinstance(line, int):
-            line = self.data.iloc[line]
-        obj = line['question']
-        question = f'\nPlease output the coordinates of the {obj} in the image in the format [x1, y1, x2, y2]. Do not include any additional text. Respond with relative coordinates between 0 and 1, with top left corner (0, 0), top right (1, 0) and bottom right (1, 1).'  # noqa: E501
         tgt_path = self.dump_image(line)
 
         msgs = []

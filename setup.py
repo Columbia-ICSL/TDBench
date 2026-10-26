@@ -100,7 +100,7 @@ def do_setup():
         install_requires=parse_requirements('requirements.txt'),
         setup_requires=[],
         python_requires='>=3.7.0',
-        packages=find_namespace_packages(include=['vlmeval*'], exclude=[
+        packages=find_namespace_packages(include=['vlmeval*', 'tdbench*'], exclude=[
             'test*',
             'paper_test*',
         ]),
@@ -109,7 +109,7 @@ def do_setup():
         },
         keywords=['AI', 'NLP', 'in-context learning'],
         entry_points={
-            'console_scripts': ['vlmutil = vlmeval:cli']
+            'console_scripts': ['vlmutil = vlmeval:cli', 'tdbench = tdbench.cli:main']
         },
         classifiers=[
             'Programming Language :: Python :: 3.7',

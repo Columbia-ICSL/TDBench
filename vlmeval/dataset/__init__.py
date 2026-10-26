@@ -58,7 +58,7 @@ from .image_mcq import (CVQA, LEGO, SCAM, AffordanceDataset, CustomMCQDataset, C
                         GMAIMMBenchDataset, HRBenchDataset, ImageMCQDataset, MedXpertQA_MM_test,
                         MicroBench, MMERealWorld, MMMUDataset, MMMUProDataset, MSEarthMCQ,
                         MUIRDataset, NaturalBenchDataset, OmniEarthMCQBench, OmniMedVQA, PuzzleVQA,
-                        TDBench, TopViewRS, TreeBench, VisualPuzzles, VisuLogic, VLMBlind,
+                        TopViewRS, TreeBench, VisualPuzzles, VisuLogic, VLMBlind,
                         VMCBenchDataset, WeMath, XLRSBench, _3DSRBench)
 from .image_mt import MMDUDataset
 from .image_shortqa import HLEDataset, ImageShortQADataset, PathVQA_TEST, PathVQA_VAL
@@ -67,7 +67,7 @@ from .image_vqa import (BMMR, CRPE, LENS, MMNIAH, AyaVisionBench, CoreCognition,
                         MathCanvas, MathVerse, MathVision, MathVista, MME_CoT, MMEReasoning,
                         MMReason, MMSci_Captioning, MMVet, MMVMBench, MTVQADataset, OCR_Reasoning,
                         OCRBench, OCRBench_v2, OlympiadBench, Omni3DBench, Physics_yale, PhyX,
-                        QSpatial, SeePhys, TableVQABench, TallyQA, TDBenchGrounding, VGRPBench,
+                        QSpatial, SeePhys, TableVQABench, TallyQA, VGRPBench,
                         VizWiz, VLMsAreBiased, VTCBench, WildDocBenchmark, ZEROBench)
 from .image_yorn import ImageYORNDataset
 from .longdocurl import LongDocURL
@@ -151,6 +151,7 @@ from .starebench import StareBench
 from .stibench import STIBench
 from .superchem import SUPERChemDataset
 from .tamperbench import MVTamperBench
+from .tdbench import TDBench, TDBenchGrounding
 from .tempcompass import TempCompass, TempCompass_Captioning, TempCompass_MCQ, TempCompass_YorN
 from .text_mcq import CustomTextMCQDataset, MedXpertQAText, TextMCQDataset
 from .timelens_bench import TimeLensBench
