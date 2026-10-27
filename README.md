@@ -19,7 +19,7 @@ This repository is a fork of [VLMEvalKit](https://github.com/open-compass/VLMEva
 VLMEvalKit can be evaluated; see [README_VLMEvalKit.md](README_VLMEvalKit.md) for model setup.
 
 ## Updates
-- **Oct 2026**: data v2 and the `tdbench` command; all four rotations run as one dataset.
+- **Oct 2026**: `tdbench` command for building the dataset and running the evaluation; all four rotations run as one dataset.
 - **Sep 2026**: accepted to NeurIPS 2026 (Evaluations & Datasets Track).
 - **Apr 2025**: arXiv preprint and dataset released; TDBench added to [VLMEvalKit](https://github.com/open-compass/VLMEvalKit/pull/947).
 
